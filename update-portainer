@@ -1,0 +1,26 @@
+# This Script will update the portainer docker image
+# place script in /bin to run as command
+
+# stop portainer container
+docker stop portainer
+echo "Container stopped"
+echo ""
+
+# delete old portainer container
+docker rm portainer
+echo "Old container deleted"
+echo ""
+
+# delete outdated portainer image
+docker rmi portainer/portainer -f
+echo "Outdated image deleted"
+echo ""
+
+# pull new portainer image
+echo "Pulling new portainer image"
+docker pull portainer/portainer:latest
+echo ""
+
+# start new portainer container
+echo "Starting new portainer container"
+docker run -d -p 8000:8000 -p 9000:9000 --name="portainer" -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
