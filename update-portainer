@@ -1,3 +1,4 @@
+#!/bin/bash
 # This Script will update the portainer docker image
 # place script in /bin to run as command
 
